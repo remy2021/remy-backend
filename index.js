@@ -1,16 +1,24 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware pour lire le JSON
+// Connexion MongoDB
+mongoose.connect('mongodb+srv://Admin:Marneffe2011@cluster0.pwcg8di.mongodb.net/remymtech?retryWrites=true&w=majority&appName=Cluster0')
+  .then(() => console.log("✅ Connecté à MongoDB Atlas"))
+  .catch(err => console.error("❌ Erreur MongoDB :", err));
+
+// Middleware
 app.use(express.json());
 
 // Route test
 app.get('/', (req, res) => {
-  res.send('✅ API Remy.M Tech opérationnelle');
+  res.send('✅ API Remy.M Tech opérationnelle avec MongoDB');
 });
 
-// Lancement du serveur
+// Lancement serveur
 app.listen(PORT, () => {
-  console.log(`Serveur actif sur le port ${PORT}`);
+  console.log(`🚀 Serveur actif sur le port ${PORT}`);
 });
+const inscriptionRoute = require('routes/inscription');
+app.use('/api/inscription', inscriptionRoute);
