@@ -22,3 +22,6 @@ app.listen(PORT, () => {
 });
 const inscriptionRoute = require('./routes/inscription');
 app.use('/api/inscription', inscriptionRoute);
+
+const connexionRoute = require('./routes/connexion');
+app.use('/api/connexion', connexionRoute);
