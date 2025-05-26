@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Client = require('models/client');
+const Client = require('../models/Client');
 
 // Route POST /api/inscription
 router.post('/', async (req, res) => {
