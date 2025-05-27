@@ -25,3 +25,6 @@ app.use('/api/inscription', inscriptionRoute);
 
 const connexionRoute = require('./routes/connexion');
 app.use('/api/connexion', connexionRoute);
+
+const reparationRoute = require('./routes/reparation');
+app.use('/api/reparation', reparationRoute);
