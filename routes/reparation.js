@@ -14,4 +14,8 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/test', (req, res) => {
+  res.send("✅ Route réparation test OK");
+});
+
 module.exports = router;
