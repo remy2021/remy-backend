@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Reparation = require('../models/Reparation');
 
-// POST /api/reparation
+// ✅ Route POST /api/reparation — enregistrer une nouvelle demande de réparation
 router.post('/', async (req, res) => {
   try {
     const nouvelle = new Reparation(req.body);
@@ -14,6 +14,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// ✅ Route GET /api/reparation/test — pour tester que tout fonctionne
 router.get('/test', (req, res) => {
   res.send("✅ Route réparation test OK");
 });
