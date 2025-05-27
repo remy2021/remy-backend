@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = process.env.PORT || 10000; // 10000 est juste un secours
+const PORT = process.env.PORT || 10000;
 
 // Connexion MongoDB
 mongoose.connect('mongodb+srv://Admin:Marneffe2011@cluster0.pwcg8di.mongodb.net/remymtech?retryWrites=true&w=majority&appName=Cluster0')
@@ -10,6 +10,16 @@ mongoose.connect('mongodb+srv://Admin:Marneffe2011@cluster0.pwcg8di.mongodb.net/
 
 // Middleware
 app.use(express.json());
+
+// Routes
+const inscriptionRoute = require('./routes/inscription');
+app.use('/api/inscription', inscriptionRoute);
+
+const connexionRoute = require('./routes/connexion');
+app.use('/api/connexion', connexionRoute);
+
+const reparationRoute = require('./routes/reparation');
+app.use('/api/reparation', reparationRoute);
 
 // Route test
 app.get('/', (req, res) => {
@@ -20,11 +30,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Serveur actif sur le port ${PORT}`);
 });
-const inscriptionRoute = require('./routes/inscription');
-app.use('/api/inscription', inscriptionRoute);
-
-const connexionRoute = require('./routes/connexion');
-app.use('/api/connexion', connexionRoute);
-
-const reparationRoute = require('./routes/reparation');
-app.use('/api/reparation', reparationRoute);
