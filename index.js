@@ -21,6 +21,9 @@ app.use('/api/connexion', connexionRoute);
 const reparationRoute = require('./routes/reparation');
 app.use('/api/reparation', reparationRoute);
 
+const stockRoute = require('./routes/stock');
+app.use('/api/stock', stockRoute);
+
 // Route test
 app.get('/', (req, res) => {
   res.send('✅ API Remy.M Tech opérationnelle avec MongoDB');

@@ -1,11 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const Reparation = require('../models/Reparation');
+const verifyToken = require('../middlewares/verifyToken'); // Import du middleware
 
-// ✅ Route POST /api/reparation — enregistrer une nouvelle demande de réparation
-router.post('/', async (req, res) => {
+// 🔒 Route sécurisée par JWT
+router.post('/', verifyToken, async (req, res) => {
   try {
-    const nouvelle = new Reparation(req.body);
+    const { marque, modele, imei, problemes, commentaire } = req.body;
+
+    const nouvelle = new Reparation({
+      clientId: req.client.id,
+      nom: req.client.nom,
+      prenom: req.client.prenom,
+      email: req.client.email,
+      marque,
+      modele,
+      imei,
+      problemes,
+      commentaire
+    });
+
     await nouvelle.save();
 
     res.status(201).json({ message: "Demande de réparation enregistrée ✅" });
@@ -14,7 +28,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// ✅ Route GET /api/reparation/test — pour tester que tout fonctionne
 router.get('/test', (req, res) => {
   res.send("✅ Route réparation test OK");
 });
